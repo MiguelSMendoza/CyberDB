@@ -200,7 +200,10 @@ class Query {
 	}
 
 	public function Where($whereClauses) {
-		$this->Where =  new QueryElement('WHERE', $whereClauses, ' AND ');
+		if(isset($this->Where))
+			$this->Where->appendElements($whereClauses);
+		else 
+			$this->Where = new QueryElement('WHERE', $whereClauses, ' AND ');
 		return $this;
 	}
 	/**
@@ -210,7 +213,10 @@ class Query {
 	 **/
 	public function Select($columns) {
 		$this->Type = QueryType::SELECT;
-		$this->Select = new QueryElement('SELECT', $columns);
+		if(isset($this->Select))
+			$this->Select->appendElements($columns);
+		else 
+			$this->Select = new QueryElement('SELECT', $columns);
 		return $this;
 	}
 	/**
@@ -219,7 +225,10 @@ class Query {
 	 *
 	 **/
 	public function From($tables) {
-		$this->From =  new QueryElement('FROM', $tables);
+		if(isset($this->From))
+			$this->From->appendElements($tables);
+		else 
+			$this->From = new QueryElement('FROM', $tables);
 		return $this;
 	}
 	/**
@@ -228,7 +237,10 @@ class Query {
 	 *
 	 **/
 	public function OrderBy($orderByClauses) {
-		$this->Order = new QueryElement('ORDER BY', $orderByClauses);
+		if(isset($this->Order))
+			$this->Order->appendElements($orderByClauses);
+		else 
+			$this->Order = new QueryElement('ORDER BY', $orderByClauses);
 		return $this;
 	}
 	/**
@@ -239,7 +251,10 @@ class Query {
 	 **/
 	public function Update($updateTable) {
 		$this->Type = QueryType::UPDATE;
-		$this->Update = new QueryElement('UPDATE',$updateTable);
+		if(isset($this->Update))
+			$this->Update->appendElements($updateTable);
+		else 
+			$this->Update = new QueryElement('UPDATE',$updateTable);
 		return $this;
 	}
 	/**
@@ -249,7 +264,10 @@ class Query {
 	 * @since 1.0
 	 **/
 	public function Set($setClauses){
-		$this->Set = new QueryElement('SET',$setClauses);
+		if(isset($this->Set))
+			$this->Set->appendElements($setClauses);
+		else 
+			$this->Set = new QueryElement('SET',$setClauses);
 		return $this;
 	}
 	/**
@@ -281,7 +299,10 @@ class Query {
 	 * @since 1.0
 	 **/
 	public function Columns($columns) {
-		$this->Insert = new QueryElement('()',$columns);
+		if(isset($this->Insert))
+			$this->Insert->appendElements($columns);
+		else 
+			$this->Insert = new QueryElement('()',$columns);
 		return $this;
 	}
 	/**
@@ -291,7 +312,10 @@ class Query {
 	 * @since 1.0
 	 **/
 	public function Values($values) {
-		$this->Insert = new QueryElement('()',$values);
+		if(isset($this->Insert))
+			$this->Insert->appendElements($values);
+		else 
+			$this->Insert = new QueryElement('()',$values);
 		return $this;
 	}
 
