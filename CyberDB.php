@@ -107,6 +107,22 @@ class CyberDB {
 		$this->closeDB();
 		return $result;
 	}
+		
+	public function getNonAssociativeArray() {
+		$result = array();
+		$this->connectDB();
+		if ($this->Result = $this->mysqli->query((string) $this->Query)) {
+			while ($row = $this->Result->fetch_array(MYSQLI_NUM)) {
+				array_push($result, $row);
+			}
+			$this->Result->free();
+		}
+		else {
+			$this->raiseError("Conection Failed - ".$this->mysqli->error);
+		}
+		$this->closeDB();
+		return $result;
+	}
 
 	public function getResult() {
 		$resultado = false;
