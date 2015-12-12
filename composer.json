@@ -1,0 +1,14 @@
+{
+    "name": "miguelsmendoza/db",
+    "description": "Helper Class to manage a MySQL database",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Miguel S. Mendoza",
+            "email": "miguel@smendoza.net",
+            "homepage":"http://smendoza.net"
+        }
+    ],
+    "homepage": "https://github.com/MiguelSMendoza/CyberDB",
+    "minimum-stability": "stable"
+}
