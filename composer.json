@@ -9,6 +9,14 @@
             "homepage":"http://smendoza.net"
         }
     ],
+    "require-dev": {
+        "phpunit/phpunit": "~4.4"
+    },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    },
     "homepage": "https://github.com/MiguelSMendoza/CyberDB",
     "minimum-stability": "stable"
 }
