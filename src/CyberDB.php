@@ -67,6 +67,13 @@ class CyberDB {
 		$this->dbpassword = $pass;
 		$this->dbname = $name;
 	}
+	
+	public function sanitizeString($string) {
+		$this->connectDB();
+		$sanitize = $this->mysqli->real_escape_string($string);
+		$this->closeDB();
+		return $sanitize;
+	}
 
 	public function getObjectsArray($idArray=NULL) {
 		$result = array();
