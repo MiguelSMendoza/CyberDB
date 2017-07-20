@@ -27,7 +27,6 @@ class CyberDB {
 	private function toLog($mensaje) {
 		$log = CYBERDB_PATH.'logs'.DS.'errors.log';
 		$msj = date('m/d/Y h:i:s a', time())." - ".$mensaje.PHP_EOL;
-		echo $msj."<p></p>";
 		file_put_contents($log, $msj, FILE_APPEND | LOCK_EX);
 	}
 
@@ -360,6 +359,17 @@ class Query {
 	}
 	/**
 	 *
+	 * @param   mixed   $replaceTable  REPLACE Table for REPLACE Statement
+	 *
+	 * @since   1.0
+	 **/
+	public function Replace($replaceTable) {
+		$this->Type = QueryType::REPLACE;
+		$this->Insert = new QueryElement('REPLACE INTO',$replaceTable);
+		return $this;
+	}
+	/**
+	 *
 	 * @param   mixed   $columns  INSERT Columns for INSERT Statement
 	 *
 	 * @since   1.0
@@ -400,6 +410,9 @@ class Query {
 			break;
 		case QueryType::INSERT:
 			$query = $this->Insert.$this->Columns." VALUES ".$this->Values;
+			break;
+		case QueryType::REPLACE:
+			$query = $this->Replace.$this->Columns." VALUES ".$this->Values;
 			break;
 		case QueryType::DELETE:
 			$query = $this->Delete.$this->Where;
@@ -454,6 +467,7 @@ class QueryType {
 	const UPDATE = 2;
 	const DELETE = 3;
 	const INSERT = 4;
+	const REPLACE = 5;
 }
 
 ?>
