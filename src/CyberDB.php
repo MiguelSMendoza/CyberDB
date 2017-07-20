@@ -231,6 +231,7 @@ class Query {
 	private $Delete;
 
 	private $Insert;
+	private $Replace;
 	private $Columns;
 	private $Values;
 
@@ -365,7 +366,7 @@ class Query {
 	 **/
 	public function Replace($replaceTable) {
 		$this->Type = QueryType::REPLACE;
-		$this->Insert = new QueryElement('REPLACE INTO',$replaceTable);
+		$this->Replace = new QueryElement('REPLACE INTO',$replaceTable);
 		return $this;
 	}
 	/**
